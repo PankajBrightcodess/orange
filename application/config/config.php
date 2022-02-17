@@ -28,7 +28,7 @@ if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost'){
 	$config['base_url'] = "http://$_SERVER[HTTP_HOST]/orange";
 }
 else{
-	$config['base_url'] = "";
+	$config['base_url'] = "https://demo.softwarebss.com/orange/";
 }
 
 /*
