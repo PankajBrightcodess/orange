@@ -34,7 +34,7 @@
             </ul>
           </li> -->
           <!-- <li><a href="settings.html"><i class="lni lni-cog"></i>Settings</a></li> -->
-          <li><a href="<?= base_url('app_control/login')?>"><i class="lni lni-power-switch"></i>Sign Out</a></li>
+          <li><a href="<?= base_url('/')?>"><i class="lni lni-power-switch"></i>Sign Out</a></li>
         </ul>
       </div>
     </div>
