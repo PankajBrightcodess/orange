@@ -14,7 +14,7 @@
           <div class="col-6"><a href="<?= base_url('app_control/cart')?>">
             <i class="lni lni-cart-full"><span class="cart-count">1</span></i>
           </a></div>
-          <div class="col-6"><a href=""><i class="lni lni-user"></i></a></div>
+          <div class="col-6"><a href="<?= base_url('app_control/profile')?>"><i class="lni lni-user"></i></a></div>
         </div>
 
         <!-- Navbar Toggler-->

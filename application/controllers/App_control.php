@@ -168,7 +168,7 @@ class App_control extends CI_Controller {
      public function history(){
     	$data['title']='History';
     	$this->load->view('app/include/header-link',$data);
-    	$this->load->view('app/include/header');
+    	$this->load->view('app/include/header4');
     	$this->load->view('app/include/sidebar');
     	$this->load->view('app/history');
     	$this->load->view('app/include/footer');
@@ -218,6 +218,26 @@ class App_control extends CI_Controller {
     	$this->load->view('app/include/header');
     	$this->load->view('app/include/sidebar');
     	$this->load->view('app/platinum');
+    	$this->load->view('app/include/footer');
+    	$this->load->view('app/include/footer-link');
+     }
+
+     public function profile(){
+    	$data['title']='Currency Stake';
+    	$this->load->view('app/include/header-link',$data);
+    	$this->load->view('app/include/header');
+    	$this->load->view('app/include/sidebar');
+    	$this->load->view('app/profile');
+    	$this->load->view('app/include/footer');
+    	$this->load->view('app/include/footer-link');
+     }
+
+     public function our_team(){
+     	$data['title']='Our Team Earn';
+    	$this->load->view('app/include/header-link',$data);
+    	$this->load->view('app/include/header');
+    	$this->load->view('app/include/sidebar');
+    	$this->load->view('app/our_team');
     	$this->load->view('app/include/footer');
     	$this->load->view('app/include/footer-link');
      }
