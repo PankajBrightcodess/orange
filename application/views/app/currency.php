@@ -85,7 +85,16 @@
                 <input class="form-control cart-quantity-input" type="text" step="1" name="quantity" value="1">
                 <div class="quantity-button-handler">+</div>
               </div>
-              <button class="btn btn-danger ms-3" type="submit">Add To Cart</button>
+              <button class="btn btn-danger ms-3" type="submit">Buy Now</button>
+            </form>
+          </div>
+        </div>
+         <div class="cart-form-wrapper bg-white mb-3 py-3">
+          <div class="container">
+            <form class="cart-form" action="#" method="">
+              <div class="order-plus-minus d-flex align-items-center">
+                <marquee><span style="color:red;"><strong>Total Amount:</strong>500000/-</span>&nbsp;&nbsp;&nbsp;<span style="color:Green;"><strong>Left Amount:</strong>18000/-</span>&nbsp;&nbsp;&nbsp;</marquee>
+              </div>
             </form>
           </div>
         </div>

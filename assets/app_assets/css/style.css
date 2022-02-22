@@ -2399,7 +2399,7 @@ li.suha-dropdown-menu {
     right: 15px; }
 
 .product-title-meta-data {
-  border-top-left-radius: 2rem;
+  border-top-left-radius: 0rem;
   padding-top: 1.5rem !important; }
   .product-title-meta-data::after {
     position: absolute;

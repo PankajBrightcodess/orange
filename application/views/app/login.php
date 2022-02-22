@@ -9,11 +9,15 @@
               <form action="<?= base_url('app_control/home')?>" method="get">
                 <div class="form-group text-start mb-4"><span>Username</span>
                   <label for="username"><i class="lni lni-user"></i></label>
-                  <input class="form-control" id="username" name="username" type="text" placeholder="info@example.com">
+                  <input class="form-control" id="username" name="username"  type="text" placeholder="info@example.com">
                 </div>
                 <div class="form-group text-start mb-4"><span>Password</span>
                   <label for="password"><i class="lni lni-lock"></i></label>
-                  <input class="form-control" id="password" name="password" type="password" placeholder="Password">
+                  <input class="form-control" id="password" name="password"  type="password" placeholder="Password">
+                </div>
+                <div class="form-group text-start mb-4"><span>Referral Code (Optional)</span>
+                  <label for="referral"><i class="lni lni-invention"></i></label>
+                  <input class="form-control" id="password" name="referral" type="text" placeholder="Referral Code">
                 </div>
                 <button class="btn  btn-info btn-lg w-100" type="submit">Log In</button>
               </form>
