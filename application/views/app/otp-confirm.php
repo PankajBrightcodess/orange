@@ -9,12 +9,12 @@
             </div>
             <!-- OTP Verify Form-->
             <div class="otp-verify-form mt-5 px-4">
-              <form action="<?= base_url('app_control/home')?>" method="post">
+              <form action="<?= base_url('app_control/otp_check')?>" method="post">
                 <div class="d-flex justify-content-between mb-5">
-                  <input class="single-otp-input form-control" type="text" value="" placeholder="-" maxlength="1">
-                  <input class="single-otp-input form-control" type="text" value="" placeholder="-" maxlength="1">
-                  <input class="single-otp-input form-control" type="text" value="" placeholder="-" maxlength="1">
-                  <input class="single-otp-input form-control" type="text" value="" placeholder="-" maxlength="1">
+                  <input class="single-otp-input form-control" name="first" required type="text" value="" placeholder="-" maxlength="1">
+                  <input class="single-otp-input form-control" name="second" required type="text" value="" placeholder="-" maxlength="1">
+                  <input class="single-otp-input form-control" name="third" required type="text" value="" placeholder="-" maxlength="1">
+                  <input class="single-otp-input form-control" name="forth" required type="text" value="" placeholder="-" maxlength="1">
                 </div>
                 <button class="btn btn-info btn-lg w-100" type="submit">Verify &amp; Proceed</button>
               </form>

@@ -6,7 +6,7 @@
           <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5"><!-- <img class="big-logo" src="img/core-img/logo-white.png" alt=""> --><h2 style="color:white">ORANGE</h2>
             <!-- Register Form-->
             <div class="register-form mt-5 px-4">
-              <form action="<?= base_url('app_control/home')?>" method="get">
+              <form action="<?= base_url('app_control/check_login')?>" method="POST">
                 <div class="form-group text-start mb-4"><span>Username</span>
                   <label for="username"><i class="lni lni-user"></i></label>
                   <input class="form-control" id="username" name="username"  type="text" placeholder="info@example.com">
@@ -32,3 +32,4 @@
         </div>
       </div>
     </div>
+

@@ -93,7 +93,7 @@
           <div class="container">
             <form class="cart-form" action="#" method="">
               <div class="order-plus-minus d-flex align-items-center">
-                <marquee><span style="color:red;"><strong>Total Amount:</strong>500000/-</span>&nbsp;&nbsp;&nbsp;<span style="color:Green;"><strong>Left Amount:</strong>9000/-</span>&nbsp;&nbsp;&nbsp;</marquee>
+                <marquee><span style="color:red;"><strong>Total Share:</strong>625</span>&nbsp;&nbsp;&nbsp;<span style="color:Green;"><strong>Left Share:</strong>375</span>&nbsp;&nbsp;&nbsp;</marquee>
               </div>
             </form>
           </div>

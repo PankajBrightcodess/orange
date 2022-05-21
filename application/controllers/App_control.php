@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class App_control extends CI_Controller {
 	function __construct(){
 		parent::__construct();
+		check_and_setcookie();
       // $this->load->model('Website_model');
       // $this->load->helper('cookie');
 	}
@@ -242,12 +243,101 @@ class App_control extends CI_Controller {
     	$this->load->view('app/include/footer-link');
      }
 
-    
-    
-    
-   
-    
-    public function alldata($token=''){
+     // ''''''''''''''''''''''''''''''''''''''''''''''''backed work'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+     public function signup(){
+     	$data =  $this->input->post();
+     	// echo PRE;
+     	// print_r($data);die;
+     	if($data['registration']=='on'){
+     		$result = $this->App_model->create_signup($data);
+     		if($result){
+     			$this->session->set_flashdata('web_msg','Your Account Successfully Created');
+     		  redirect('app_control/otp');
+     		}else{
+     			$this->session->set_flashdata('web_err_msg','Please Try Again!');
+     		  redirect('app_control/register');
+     		}	
+     	}else{
+     		$this->session->set_flashdata('web_err_msg','Error');
+     		redirect('app_control/register');
+     	}
+     }
+
+     public function otp_check(){
+     	$data = $this->input->post();
+     	$user_otp  = $data['first'].$data['second'].$data['third'].$data['forth'];
+     	// '''''''''not right condition for  requirement pleae change it'''''''''''''''''''
+     	if(!empty($user_otp)){
+     		$this->session->set_flashdata('web_msg','Your Mobile Verified');
+     		  redirect('app_control/login');
+     	}else{
+     			$this->session->set_flashdata('web_err_msg','Please Try Again!');
+     		  redirect('app_control/otpconfirm');
+     	}
+     }
+
+     public function check_login(){
+     		$data=$this->input->post();
+     		$result = $this->App_model->login_model($data);
+     		if(!empty($result)){
+     			 $this->createsession($result);
+     			$this->session->set_flashdata('web_msg','Successfully Login');
+     		  redirect('app_control/home');
+     		}else{
+     			$this->session->set_flashdata('web_err_msg','Please Try Again!');
+     		  redirect('app_control/login');
+     		}	
+
+     }
+
+	   public function createsession($result){
+	   	// echo PRE;
+	   	  // print_r($result);die;
+				$data['member_id']=$result['id'];
+				$data['name']=$result['name'];
+				$data['email']=$result['email'];
+				$data['contact']=$result['contact'];
+				$this->session->set_userdata($data);
+				$this->update_cookie();
+			}
+
+	public function update_cookie(){
+		 $this->load->helper('cookie');
+		 		$member_id = $this->session->userdata('member_id');
+        $name = $this->session->userdata('name');
+        $email = $this->session->userdata('email');
+        $contact = $this->session->userdata('contact');
+        $cookiearray = array('member_id'=>$member_id,'name'=>$name,'email'=>$email,'contact'=>$contact);
+        $json = base64_encode(json_encode($cookiearray));
+        $cookie = array(
+	        'name'   => 'login_cookie',
+	        'value'  => $json,
+	        'expire' => '2592000'        
+         ); 
+		     $this->load->helper('cookie');
+         $this->input->set_cookie($cookie);
+	}
+
+	public function logout(){
+		$data=array("member_id","name","email","contact");
+		$this->session->unset_userdata('member_id');
+		$this->session->unset_userdata('name');
+		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('contact');
+		// unset($data);	
+		$this->load->helper('cookie');
+      	delete_cookie('login_cookie');
+		redirect('app_control/login');
+	}
+
+
+
+
+
+
+
+   public function alldata($token=''){
 		$this->load->library('alldata');
 		$this->alldata->viewall($token);
 	}
