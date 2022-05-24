@@ -10,8 +10,8 @@
           <h6 class="mb-0"><?= $title;?></h6>
         </div>
           <div class="page-heading row">
-            <div class="col-md-4 col-4"><a href="<?= base_url('app_control/customer_support')?>"><i class="lni lni-headphone-alt"></i></a></div>
-            <div class="col-md-4 col-4"><a href="<?= base_url('app_control/wallet')?>"><i class="lni lni-mastercard"></i></a></div>
+           <!--  <div class="col-md-4 col-4"><a href="<?= base_url('app_control/customer_support')?>"><i class="lni lni-headphone-alt"></i></a></div> -->
+            <div class="col-md-4 col-4"><a href="<?= base_url('app_control/add_wallet_payment')?>"><i class="lni lni-circle-plus"></i></a></div>
             <div class="col-md-4 col-4"><i class="lni lni-information-round"></i></div>
 
           </div>

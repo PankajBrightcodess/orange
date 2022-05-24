@@ -60,5 +60,14 @@
         <!-- AdminLTE for demo purposes -->
         <script src="<?php echo file_url("includes/dist/js/demo.js"); ?>"></script>
         <script src="<?php echo file_url("includes/custom/custom.js"); ?>"></script>
+
+        <script type="text/javascript">
+        	 $(document).ready(function() {
+        	  	var amount = $('.amount').val();
+        	  	if(amount>200){
+        	  		
+        	  	}
+			});
+        </script>
     </body>
 </html>

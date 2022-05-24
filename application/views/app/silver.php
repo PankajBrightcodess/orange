@@ -20,7 +20,19 @@
           <div class="container d-flex justify-content-between">
             <div class="p-title-price">
               <h6 class="mb-1">Silver</h6>
-              <p class="sale-price mb-0">Invest Rs. 200/- Earn Rs.21/- daily profit</p>
+              <?php 
+                if(!empty($list)){
+                  foreach ($list as $key => $value) {
+                     if($value['stack_name']=='Silver Stake' || $value['stack_name']=='Silver'){
+                    ?><p class="sale-price mb-0">Invest Rs. <?php echo $value['invest'];?>/- Earn Rs. <?php echo $value['earn_amount'];?>/- daily profit</p><?php
+                  }
+                  }
+                 
+                }
+
+
+              ?>
+              
             </div>
             <div class="p-wishlist-share"><a href="#"></a></div>
           </div>
@@ -80,7 +92,7 @@
           <div class="container">
             <form class="cart-form" action="#" method="">
               <div class="order-plus-minus d-flex align-items-center">
-                <marquee><span style="color:red;"><strong>Total Share Issue:</strong>1300</span>&nbsp;&nbsp;&nbsp;<span style="color:Green;"><strong>Left Share Issue:</strong>1200</span>&nbsp;&nbsp;&nbsp;</marquee>
+                <marquee><span style="color:red;"><strong>Total Share Issue:</strong><?php echo $list[0]['business'];?></span>&nbsp;&nbsp;&nbsp;<span style="color:Green;"><strong>Left Share Issue:</strong>1200</span>&nbsp;&nbsp;&nbsp;</marquee>
               </div>
             </form>
           </div>
@@ -88,12 +100,22 @@
         <!-- Add To Cart-->
         <div class="cart-form-wrapper bg-white mb-3 py-3">
           <div class="container">
-            <form class="cart-form" action="#" method="">
+            <form class="cart-form" action="<?php echo base_url('app_control/create_share')?>" method="POST">
               <div class="order-plus-minus d-flex align-items-center">
                 <div class="quantity-button-handler">-</div>
                 <input class="form-control cart-quantity-input" type="text" step="1" name="quantity" value="1">
                 <div class="quantity-button-handler">+</div>
               </div>
+              <?php 
+                if(!empty($list)){
+                    foreach ($list as $key => $value) {
+                       if($value['stack_name']=='Silver Stake' || $value['stack_name']=='Silver'){
+                       ?><input type="hidden" value="<?php echo $value['invest'];?>" name="amount"><?php
+                    }
+                  }
+                }
+              ?>
+               <input type="hidden" name="stack_name" value="Silver">
               <button class="btn btn-warning ms-3" type="submit">Buy Now</button>
             </form>
           </div>

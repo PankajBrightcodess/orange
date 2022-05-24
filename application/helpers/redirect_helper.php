@@ -84,4 +84,14 @@
 			}
 		}
 	}
+
+	// 	if(!function_exists('redirectpage')){
+	// 	function redirectpage(){
+	// 		$CI = get_instance();
+	// 		 $CI->session->set_userdata('referred_from', current_url()); 
+	// 	}
+	// }
+
+
+
 ?>

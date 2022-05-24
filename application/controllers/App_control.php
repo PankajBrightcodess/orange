@@ -138,13 +138,20 @@ class App_control extends CI_Controller {
     }
 
     public function wallet(){
-		$data['title']='Balance';
-		$this->load->view('app/include/header-link',$data);
-		$this->load->view('app/include/header2');
-		$this->load->view('app/include/sidebar');
-		$this->load->view('app/wallet');
-		$this->load->view('app/include/footer');
-		$this->load->view('app/include/footer-link');
+    	$last_id = $_SESSION['last_id'];
+    	if(!empty($last_id)){
+				$data['amount']=$this->App_model->get_amount($last_id);
+    	}
+    	$member_id = $_SESSION['member_id'];
+    	$data['member_wallet']=$this->App_model->get_wallet($member_id);
+    	$data['wallet_list']=$this->App_model->get_wallet_list($member_id);
+			$data['title']='Balance';
+			$this->load->view('app/include/header-link',$data);
+			$this->load->view('app/include/header5');
+			$this->load->view('app/include/sidebar');
+			$this->load->view('app/wallet');
+			$this->load->view('app/include/footer');
+			$this->load->view('app/include/footer-link');
     }
     public function customer_support(){
 		$data['title']='Customer Support';
@@ -152,6 +159,16 @@ class App_control extends CI_Controller {
 		$this->load->view('app/include/header2');
 		$this->load->view('app/include/sidebar');
 		$this->load->view('app/customer_support');
+		$this->load->view('app/include/footer');
+		$this->load->view('app/include/footer-link');
+    }
+
+    public function add_wallet_payment(){
+		$data['title']='Add Payment';
+		$this->load->view('app/include/header-link',$data);
+		$this->load->view('app/include/header2');
+		$this->load->view('app/include/sidebar');
+		$this->load->view('app/add_payment');
 		$this->load->view('app/include/footer');
 		$this->load->view('app/include/footer-link');
     }
@@ -176,6 +193,16 @@ class App_control extends CI_Controller {
     	$this->load->view('app/include/footer-link');
     }
 
+    public function payment_method(){
+    	$data['title']='Payment Method';
+    	$this->load->view('app/include/header-link',$data);
+    	$this->load->view('app/include/header4');
+    	$this->load->view('app/include/sidebar');
+    	$this->load->view('app/payment_method');
+    	$this->load->view('app/include/footer');
+    	$this->load->view('app/include/footer-link');
+    }
+
      public function history_details(){
     	$data['title']='History Details';
     	$this->load->view('app/include/header-link',$data);
@@ -187,6 +214,7 @@ class App_control extends CI_Controller {
     }
 
  	public function silver(){
+ 			$data['list']=$this->Account_model->stacklist();
     	$data['title']='Silver Stake';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -196,6 +224,7 @@ class App_control extends CI_Controller {
     	$this->load->view('app/include/footer-link');
     }
     public function gold(){
+    	$data['list']=$this->Account_model->stacklist();
     	$data['title']='Gold Stake';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -205,6 +234,7 @@ class App_control extends CI_Controller {
     	$this->load->view('app/include/footer-link');
     }
       public function currency(){
+      	$data['list']=$this->Account_model->stacklist();
     	$data['title']='Currency Stake';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -214,6 +244,7 @@ class App_control extends CI_Controller {
     	$this->load->view('app/include/footer-link');
      }
      public function platinum(){
+     	$data['list']=$this->Account_model->stacklist();
     	$data['title']='Currency Stake';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -267,7 +298,6 @@ class App_control extends CI_Controller {
      public function otp_check(){
      	$data = $this->input->post();
      	$user_otp  = $data['first'].$data['second'].$data['third'].$data['forth'];
-     	// '''''''''not right condition for  requirement pleae change it'''''''''''''''''''
      	if(!empty($user_otp)){
      		$this->session->set_flashdata('web_msg','Your Mobile Verified');
      		  redirect('app_control/login');
@@ -288,7 +318,6 @@ class App_control extends CI_Controller {
      			$this->session->set_flashdata('web_err_msg','Please Try Again!');
      		  redirect('app_control/login');
      		}	
-
      }
 
 	   public function createsession($result){
@@ -331,13 +360,44 @@ class App_control extends CI_Controller {
 		redirect('app_control/login');
 	}
 
+	public function create_share(){
+		$data = $this->input->post();
+		$result = $this->App_model->add_share($data);
+   		if(!empty($result)){	
+   		  redirect('app_control/payment_method');
+   		}else{
+   			$this->session->set_flashdata('web_err_msg','Please Try Again!');
+   		  redirect('app_control/home');
+   		}	
+	}
+
+	public function redirectpages(){
+		 redirect($_SERVER['HTTP_REFERER']);  
+	}
+
+	public function transcation(){
+		$data = $this->input->post();
+		$result = $this->App_model->tanscation_model($data);
+		if($result){
+			echo $result;
+		}
+	}
+
+	public function add_amount(){
+		// ''''''''Karya Pragati Par Hai'''''''''''''
+		echo PRE;
+		print_r($_POST);die;
+	}
 
 
 
 
 
 
-   public function alldata($token=''){
+
+
+
+  public function alldata($token=''){
 		$this->load->library('alldata');
 		$this->alldata->viewall($token);
 	}

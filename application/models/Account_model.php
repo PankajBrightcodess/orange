@@ -280,10 +280,9 @@ class Account_model extends CI_Model{
     public function getdynamic_sidebar(){
         // need to have role
         $role = $this->session->role;        
-		$parentsidebar = $this->getsidebar(array('status'=>'1','parent'=>'0'),'all',array('role_id'=>"\"$role\""));		
+		$parentsidebar = $this->getsidebar(array('status'=>'1','parent'=>'0'),'all',array('role_id'=>"\"$role\""));
 		$returnsidebar = array(); 
 		$returnsidebar = $this->getall_parentwise_sidebar($parentsidebar);
-		//print_r($returnsidebar);die;
        	return $returnsidebar;
     }
 
@@ -323,6 +322,61 @@ class Account_model extends CI_Model{
 				$update=array("position"=>$i);
 				$this->db->update("sidebar",$update,array("id"=>$row['id']));
 			}
+		}
+	}
+
+	public function add_stack($data){
+		unset($data['save_cat']);
+		$data['added_on']= date('Y-m-d');
+		$insert_stack['verify'] = $this->db->insert('share',$data);
+        if($insert_stack['verify']){
+            return $insert_stack;
+        }else{
+            return false;
+        }
+	}
+
+	public function stacklist($type='all'){
+	  $query = $this->db->get_where('share',array('status'=>1));
+	  if($type == 'all'){
+          $return = $query->result_array();
+       }else{
+          $return = $query->unbuffered_row('array');
+       }
+       return $return;
+	}
+
+	public function getlist_byid($id,$type = 'all'){
+		$query = $this->db->get_where('share',array('status'=>1,'id'=>$id));
+		  if($type == 'all'){
+	          $return = $query->result_array();
+	       }else{
+	          $return = $query->unbuffered_row('array');
+	       }
+       return $return;
+
+	}
+
+	public function stack_update($data){
+		unset($data['update_cat']);
+		$this->db->where("id",$data['id']);
+		$result['verify'] = $this->db->update('share',$data);
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+	public function stack_delete($id){
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('share',array('status'=>0));
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
 		}
 	}
 }

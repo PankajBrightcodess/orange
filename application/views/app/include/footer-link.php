@@ -41,5 +41,37 @@
 
     </script>
 
+   <script type="text/javascript">
+          $(document).ready(function() {
+             $('body').on('click','#pay', function(){
+            var amt = $('.balance').val();
+            amount = parseFloat(amt);
+            var wbalance = $('.wallet_balance').val();
+            wallet_balance = parseFloat(wbalance);
+            if(amount<=wallet_balance){
+               if (confirm('Are You Sure ?')) {
+                     $.ajax({
+                        type:'POST',
+                        url: '<?php echo base_url('app_control/transcation')?>',
+                        data:{amount:amount},
+                        // dataType:'JSON',
+                        success:function(result){
+                          if(result){
+                           location.reload();
+                           swal("Balance","Payment Successfully","success");
+                          }else{
+                           swal("Balance","Payment not Submitted","error");
+                          }
+                        },
+
+                      });
+               }    
+            }else{
+               swal("Balance","You have no sufficient balance!","error");
+            }
+         })
+          });
+   </script>
+
   </body>
 </html>

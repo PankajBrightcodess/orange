@@ -7,7 +7,7 @@ class Login extends CI_Controller {
 	}
 	
 	public function index(){
-		loginredirect();
+		// loginredirect();
 		$this->session->unset_userdata("username");
 		$data['title']="Login";
 		$data['body_class']="login-page";
@@ -54,9 +54,8 @@ class Login extends CI_Controller {
 		$result=$this->Account_model->login($data);
 		if($result['verify']===true){
 			$this->startsession($result);
-			loginredirect();
-		}
-		else{ 
+			redirect('home');
+		}else{ 
 			$this->session->set_flashdata('logerr',$result['verify']);
 			redirect('login/');
 		}
@@ -78,9 +77,6 @@ class Login extends CI_Controller {
 				$otp=$result['otp'];
 				$verification_msg="$otp is your One Time Password to Reset password . This OTP is valid for 15 minutes.";
 				$smsdata=array("mobile"=>$result['mobile'],"message"=>$verification_msg);
-				
-				//send_sms($smsdata);
-				
 				$this->session->set_userdata("username",$username);
 				redirect('enterotp/'.$otp);
 			}
@@ -93,7 +89,9 @@ class Login extends CI_Controller {
 			redirect('login/');
 		}
 	}
-	
+
+
+
 	public function validateOTP(){
 		if($this->session->username===NULL){redirect('login/');}
 		if($this->input->post('submitotp')!==NULL){
