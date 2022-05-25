@@ -85,16 +85,21 @@ class App_control extends CI_Controller {
     }
 
     public function make_payment(){
-    	$data['title']='Make Payment';
-    	$this->load->view('app/include/header-link',$data);
-    	$this->load->view('app/include/header');
-    	$this->load->view('app/include/sidebar');
-    	$this->load->view('app/make_payment');
-    	$this->load->view('app/include/footer');
-    	$this->load->view('app/include/footer-link');
+    	if(!empty($_SESSION['pay_id'])){
+    		$pay_id = $this->session->userdata('pay_id');
+    		$data['payment'] = $this->App_model->member_details($pay_id);
+	    	$data['title']='Make Payment';
+	    	$this->load->view('app/include/header-link',$data);
+	    	$this->load->view('app/include/header');
+	    	$this->load->view('app/include/sidebar');
+	    	$this->load->view('app/make_payment',$data);
+	    	$this->load->view('app/include/footer');
+	    	$this->load->view('app/include/footer-link');
+
+    	}
+    	
 
     }
-
     
     public function singleproduct(){
     	$data['title']='Single Product';
@@ -274,6 +279,16 @@ class App_control extends CI_Controller {
     	$this->load->view('app/include/footer-link');
      }
 
+      public function payment_success(){
+    	$data['title']='Payment Method';
+    	$this->load->view('app/include/header-link',$data);
+    	$this->load->view('app/include/header4');
+    	$this->load->view('app/include/sidebar');
+    	$this->load->view('app/payment_method');
+    	$this->load->view('app/include/footer');
+    	$this->load->view('app/include/footer-link');
+    }
+
      // ''''''''''''''''''''''''''''''''''''''''''''''''backed work'''''''''''''''''''''''''''''''''''''''''''''''''''
 
      public function signup(){
@@ -384,16 +399,41 @@ class App_control extends CI_Controller {
 	}
 
 	public function add_amount(){
-		// ''''''''Karya Pragati Par Hai'''''''''''''
-		echo PRE;
-		print_r($_POST);die;
+		$data=$this->input->post();
+		$result = $this->App_model->add_amount_model($data);
+   		if(!empty($result)){	
+   			$this->session->set_userdata($result);
+   		  redirect('app_control/make_payment');
+   		}else{
+   			$this->session->set_flashdata('web_err_msg','Please Try Again!');
+   		  redirect('app_control/home');
+   		}	
+
 	}
 
+	public function success(){
+      $postdata = $this->input->post();
+      $payment_id = $postdata ['razorpay_payment_id'];
+      $paymentdetail = json_encode($postdata);
+      $pay_id = $this->session->userdata('pay_id');
+      //$order_array = json_decode($order_id,true);
+      if(!empty($pay_id)){
+            $updatestatus= $this->db->update('payment',array('payment_status'=>'1','payment_details'=>$paymentdetail,'payment_id'=>$payment_id),array('id'=>$pay_id));
+            // $this->session->unset_userdata('pay_id');
+            if($updatestatus==true){
+            	$update = $this->App_model->trans_wallet();
+            	// print_r($update);die;
+            		redirect('app_control/payment_success');
+                $this->session->set_flashdata('request_msg',"Order Placed Successfully !!");
+            }else{
+            	$this->session->set_flashdata('request_err_msg',"Order Not Placed");
+            }
+                 
+      }      
+      redirect('/');
+    }
 
-
-
-
-
+    
 
 
 

@@ -124,10 +124,84 @@ class App_model extends CI_Model{
     			return false;
     		}
     	}
+    }
+
+    public function add_amount_model($data){
+    	$data['user_id'] = $_SESSION['member_id'];
+    	$data['date'] = date('Y-m-d');
+    	$data['time'] = date('H:i:s');
+    	$data['added_on'] = date('Y-m-d H:i:s');
+    	$length = 15;
+		$request_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+		$data['request_no'] = $request_no;
+			if(!empty($data['user_id'])){
+				$status=$this->db->insert('org_payment',$data);
+				if($status){
+					$uploads['pay_id']=$this->db->insert_id();
+					return $uploads;
+				}
+				else{
+					return false;
+				}
+
+			}
+    }
 
 
+
+    public function member_details($pay_id){
+    	$this->db->where('t1.id',$pay_id);		
+    	$this->db->select('t1.*,t2.name,t2.email,t2.contact');
+    	$this->db->from('org_payment t1');
+    	$this->db->join('org_member t2','t1.user_id=t2.id','left');
+    	$qry = $this->db->get();
+    	return $qry->row_array();
 
     }
+
+    public function trans_wallet(){
+    	 $pay_id = $this->session->userdata('pay_id');
+    	 $this->db->where('id',$pay_id);
+    	 $this->db->select('amount');
+    	 $this->db->from('org_payment');
+    	 $qry = $this->db->get();
+    	 $amt = $qry->row_array();
+    	 if(!empty($amt)){
+    	 	  return $this->update_wallet($amt);
+    	 }
+    	 else{
+    	 	return false;
+    	 }
+    }
+
+    public function update_wallet($amt){
+		$user_id = $this->session->userdata('member_id');	
+		$query=$this->db->get_where('wallet',array('user_id' => $user_id));
+		$result =  $query->row_array();
+		$amount = $result['cradit'];
+		// print_r($amount);
+		// print_r($amt);die;
+		$total = $amount+$amt['amount'];
+		if(!empty($total)){
+			$data['cradit']=$total;
+			  $this->db->where("user_id",$user_id); 
+				  $qry= $this->db->update("wallet", $data); 
+				  if($qry){
+				  	return $this->update_transcation($amt);
+				  }else{
+				  	return false;
+				  }
+		}
+    }
+
+    public function update_transcation($amt){
+    	$record['user_id'] = $this->session->userdata('member_id');
+    	$record['trans_type'] = 'Cradit';
+    	$record['trans_amount'] = $amt['amount'];
+    	$record['added_on'] = date('Y-m-d H:i:s');
+    	$result = $this->db->insert('org_transaction',$record);
+    		return $result;
+    	}
 
 	
 }

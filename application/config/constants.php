@@ -114,3 +114,6 @@ else{
 	defined('DB_PASSWORD')  ? null : define('DB_PASSWORD', 'Orange@123#');
 	defined('DB_NAME')      ? null : define('DB_NAME', 'softwarebss_orange');
 }
+
+defined('API_KEY')       OR define('API_KEY',"rzp_test_6haZPFpJeK6UrP");
+defined('API_SECRET')       OR define('API_SECRET',"MKu86bKmESqUVF8PQ90QLe6I");
