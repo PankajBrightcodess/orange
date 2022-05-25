@@ -57,7 +57,8 @@
                         // dataType:'JSON',
                         success:function(result){
                           if(result){
-                           location.reload();
+                           window.location.href = "<?php echo base_url('app_control/home');?>";
+                           // location.reload();
                            swal("Balance","Payment Successfully","success");
                           }else{
                            swal("Balance","Payment not Submitted","error");

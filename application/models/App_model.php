@@ -97,6 +97,7 @@ class App_model extends CI_Model{
     		$final['trans_amount'] = $data['amount'];
     		$final['added_on'] = date('Y-m-d H:i:s');
     		$result = $this->db->insert('org_transaction',$final);
+    		unset($_SESSION['last_id']);
     		return $result;
     	}
     	else{

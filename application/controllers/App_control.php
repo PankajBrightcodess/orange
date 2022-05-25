@@ -138,8 +138,8 @@ class App_control extends CI_Controller {
     }
 
     public function wallet(){
-    	$last_id = $_SESSION['last_id'];
-    	if(!empty($last_id)){
+    	if(!empty($_SESSION['last_id'])){
+    	  $last_id = $_SESSION['last_id'];
 				$data['amount']=$this->App_model->get_amount($last_id);
     	}
     	$member_id = $_SESSION['member_id'];
