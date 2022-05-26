@@ -379,4 +379,108 @@ class Account_model extends CI_Model{
 			return $result;
 		}
 	}
+
+
+	public function userlist_model(){
+		$getquery=$this->db->get_where("member",array('status'=>1));
+		$array=$getquery->result_array();
+		return $array;
+	}
+
+	public function update_userlist_model($data){
+		$id = $data['id'];
+		unset($data['id']);
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('member',$data);
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+	public function user_delete($id){
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('member',array('status'=>0));
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+	public function userwallet_model(){
+		$this->db->select('t1.*,t2.name,t2.email,t2.contact');
+		$this->db->from('wallet t1');
+		$this->db->join('member t2','t1.user_id=t2.id','left');
+		$qry = $this->db->get();
+		return $qry->result_array();
+	}
+
+	public function usershare_model(){
+		$this->db->order_by('id','DESC');
+		$this->db->select('t1.*,t2.name,t2.email,t2.contact');
+		$this->db->from('member_share t1');
+		$this->db->join('member t2','t1.member_id=t2.id','left');
+		$qry = $this->db->get();
+		return $qry->result_array();
+	}
+
+	public function category_add($data){
+		$data['added_on']=date('Y-m-d');
+		$result['verify'] = $this->db->insert('category',$data);
+        if($result['verify']){
+            return $result;
+        }else{
+            return false;
+        }
+	}
+
+	public function categorylist(){
+		$table=TP."category";
+		$query = $this->db->get_where($table, array('status'=>1));
+		$result=$query->result_array();
+		return $result;
+	}
+
+	public function category_update($data){
+		$id = $data['id'];
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('category',$data);
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+	public function category_delete($id){
+		$this->db->where('id',$id);
+		$result['verify'] = $this->db->update('category',array('status'=>0));
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+
+	public function producttype_add($data){
+		$data['added_on']=date('Y-m-d');
+		$result['verify'] = $this->db->insert('product_type',$data);
+        if($result['verify']){
+            return $result;
+        }else{
+            return false;
+        }
+	}
+
+
+
+
+
 }

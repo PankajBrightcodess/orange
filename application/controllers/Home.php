@@ -106,6 +106,9 @@ class Home extends CI_Controller {
 		tinifyresizeimage(".".$src,400,400,"cover");
 		print_r($src);
 	}
+
+
+	
 	
 	public function alldata($token=''){
 		$this->load->library('alldata');
