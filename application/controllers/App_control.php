@@ -104,7 +104,8 @@ class App_control extends CI_Controller {
     }
     
     public function singleproduct(){
-    	$id = $this->input->get('id');
+    	// $id = $this->input->get('id');
+    	$id=$this->uri->segment(4);
     	print_r($id);
     	$data['product_details'] = $this->App_model->product_details_by_id($id);
     	echo PRE;
