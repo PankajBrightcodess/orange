@@ -227,7 +227,6 @@ class App_model extends CI_Model{
 		$this->db->join('brand t4','t1.brand_id=t4.id','left');
 		$qry = $this->db->get();
 		return $qry->row_array();
-
     }
 
     public function add_cart_amount($data){
