@@ -107,8 +107,6 @@ class App_control extends CI_Controller {
     	// $id = $this->input->get('id');
     	$id=$this->uri->segment(3);
     	$data['product_details'] = $this->App_model->product_details_by_id($id);
-    	echo PRE;
-    	print_r($data['product_details']);die;
     	$data['title']='Single Product';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
