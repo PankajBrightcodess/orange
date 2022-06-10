@@ -450,7 +450,7 @@ class Account_model extends CI_Model{
 		$this->db->where("id",$id);
 		$result['verify'] = $this->db->update('category',$data);
 		if($result){
-			return $result;
+		   return $result;
 		}
 		else{
 			return $result;
@@ -468,6 +468,15 @@ class Account_model extends CI_Model{
 		}
 	}
 
+	public function brand_add($data){
+		$data['added_on']=date('Y-m-d');
+		$result['verify'] = $this->db->insert('brand',$data);
+        if($result['verify']){
+            return $result;
+        }else{
+            return false;
+        }
+	}
 
 	public function producttype_add($data){
 		$data['added_on']=date('Y-m-d');
@@ -478,6 +487,144 @@ class Account_model extends CI_Model{
             return false;
         }
 	}
+
+	public function producttypelist(){
+		$this->db->where('t1.status',1);
+		$this->db->select('t1.*,t2.name as category_name');
+		$this->db->from('product_type t1');
+		$this->db->join('org_category t2','t1.catg_id=t2.id','left');
+		$qry = $this->db->get();
+		return $qry->result_array();
+	}
+
+	public function producttype_update($data){
+		$id = $data['id'];
+		unset($data['id']);
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('product_type',$data);
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+	public function producttype_delete($id){
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('product_type',array('status'=>0));
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+	public function brandlist(){
+		$this->db->where('t1.status',1);
+		$this->db->select('t1.*,t2.name as category_name');
+		$this->db->from('brand t1');
+		$this->db->join('category t2','t1.catg_id=t2.id','left');
+		$qry = $this->db->get();
+		return $qry->result_array();
+	}
+
+	public function brand_update($data){
+		$id = $data['id'];
+		unset($data['id']);
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('brand',$data);
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+
+	public function brand_delete($id){
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('brand',array('status'=>0));
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+
+	public function productlist(){
+		$this->db->where('t1.status',1);
+		$this->db->select('t1.*,t2.name as category_name,t3.product_type,t4.brand');
+		$this->db->from('product t1');
+		$this->db->join('category t2','t1.catg_id=t2.id','left');
+		$this->db->join('product_type t3','t1.type_id=t3.id','left');
+		$this->db->join('brand t4','t1.brand_id=t4.id','left');
+		$qry = $this->db->get();
+		return $qry->result_array();
+	}
+
+
+
+	// '''''''''''''''''''''Product Area''''''''''''''''''''''''''
+
+	// public function get_ptype_brand_list($id){
+	// 	$ptype = $this->get_project_type_list($id);
+	// 	$brand = $this->get_brand_list($id);
+	// 	$allresult['product_type'] = $ptype;
+	// 	$allresult['brand'] = $brand;
+	// 	 return $allresult;
+	// }
+	public function get_project_type_list($id){
+		$query = $this->db->get_where('product_type', array('status'=>1,'catg_id'=>$id));
+		$result=$query->result_array();
+		return $result;
+	}
+
+	public function get_brand_list($id){
+		$query = $this->db->get_where('brand', array('status'=>1,'catg_id'=>$id));
+		$result=$query->result_array();
+		return $result;
+	}
+
+	public function product_add($data){
+		unset($data['save_cat']);
+		$data['added_on']=date('Y-m-d H:i:s');
+		$result['verify'] = $this->db->insert('product',$data);
+        if($result['verify']){
+            return $result;
+        }else{
+            return false;
+        }
+	}
+
+	public function update_product_model($data){
+		$id = $data['id'];
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('product',$data);
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+	public function product_delete_model($id){
+		$this->db->where("id",$id);
+		$result['verify'] = $this->db->update('product',array('status'=>0));
+		if($result){
+			return $result;
+		}
+		else{
+			return $result;
+		}
+	}
+
+	
 
 
 

@@ -9,13 +9,18 @@
                                 <?php echo form_open_multipart('admin/add_product_type');?>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
+                                        <?php echo form_dropdown(array('name' => 'catg_id', 'id' => 'catg_id', 'class' => 'form-control', 'required' => 'true'), $categorys); ?>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
                                         <?php echo form_input(array('type'=>'text','name'=>'product_type','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Enter Product Type','required'=>'true'));?>
                                     </div>                                    
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4">
-                                        <?php echo form_submit(array('name'=>'save_cat','id'=>'save_cat','class'=>'form-control btn btn-success'));?>
+                                        <?php echo form_submit(array('name'=>'save_cat','id'=>'save_cat','class'=>'form-control btn btn-success','value'=>'Submit'));?>
                                     </div>
                                     <div class="col-md-4"></div>                                    
                                 </div>
@@ -27,24 +32,23 @@
                                     <thead>
                                         <tr>    
                                             <th>#</th>
-                                            <th>Stack Name</th>                                            
-                                            <th>Business</th>                                            
-                                                                                       
+                                            <th>Category</th>                                            
+                                            <th>Product</th>                                       
                                             <th>Action</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                         <?php if(!empty($categorylist)){ $i=0;
-                                                foreach ($categorylist as $key => $row) { $i++;
+                                         <?php if(!empty($product_list)){ $i=0;
+                                                foreach ($product_list as $key => $row) { $i++;
                                                    ?>
                                                    <tr>
                                                       <td><?php echo $i;?></td>
-                                                      <td ><?php echo $row['name'];?></td>
-                                                      <td><img src="<?= base_url($row['image'])?>" class="img-fluid" width="20%"> </td>
+                                                      <td ><?php echo $row['category_name'];?></td>
+                                                      <td><?php echo $row['product_type'];?></td>
                                                         
                                                       <td><span class="float-right">
-                                                        <a href='<?php echo base_url("admin/delete_category/?id=$row[id]");?>'><button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
-                                                         <button type="button" class="btn btn-success btn-xs updt" data-id="<?php echo $row['id'];?>" data-name="<?php echo $row['name'];?>" data-image="<?php echo $row['image'];?>" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
+                                                        <a href='<?php echo base_url("admin/delete_product_type/?id=$row[id]");?>'><button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
+                                                         <button type="button" class="btn btn-success btn-xs updt"data-id="<?php echo $row['id'];?>" data-catg_id="<?php echo $row['catg_id'];?>" data-product_type="<?php echo $row['product_type'];?>" data-id="<?php echo $row['id'];?>"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
                                                         </span>
                                                       </td>
                                                    </tr>
@@ -72,18 +76,17 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-       <?php echo form_open_multipart('admin/update_category');?>
+       <?php echo form_open_multipart('admin/update_product_type');?>
       <div class="modal-body">
        <div class="row">
            <div class="col-md-12 col-lg-12 col-12 mb-2">
-               <label>Name</label>
-               <input type="text" name="name" id="name" class="form-control" placeholder="Name :">
+               <label>Category</label>
+                <?php echo form_dropdown(array('name' => 'catg_id', 'id' => 'catg_ids', 'class' => 'form-control', 'required' => 'true'), $categorys); ?>
                <input type="hidden" name="id" id="id" class="form-control" placeholder="Name :">
            </div>
            <div class="col-md-12 col-lg-12 col-12 mb-2">
-                <label>Image</label>
-                <img src="" id="images" class="img-fluid">
-               <input type="file" name="image" id="image" class="form-control" >
+                <label>Product Type</label>
+               <input type="text" name="product_type" id="product_type" class="form-control" >
            </div>
            
        </div>
@@ -111,13 +114,13 @@
 
         $('body').on('click','.updt',function(e){
             var id = $(this).data('id');
-            var name = $(this).data('name');
-            var image = $(this).data('image');
+            var catg_id = $(this).data('catg_id');
+            var product_type = $(this).data('product_type');
             
           
             $('#id').val(id);
-            $('#name').val(name);
-            $('#images').src(image);
+            $('#catg_ids').val(catg_id);
+            $('#product_type').val(product_type);
            
        });
 

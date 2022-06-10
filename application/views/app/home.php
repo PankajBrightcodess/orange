@@ -1,12 +1,4 @@
-<!-- <div class="toast pwa-install-alert shadow bg-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" data-bs-autohide="true">
-      <div class="toast-body">
-        <div class="content d-flex align-items-center mb-2"><img src="<?= base_url('assets/app_assets/img/icons/icon-72x72.png')?>" alt="">
-          <h6 class="mb-0">Add to Home Screen</h6>
-          <button class="btn-close ms-auto" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div><span class="mb-0 d-block">Add Suha on your mobile home screen. Click the<strong class="mx-1">Add to Home Screen</strong>button &amp; enjoy it like a regular app.</span>
-      </div>
-    </div> -->
-    <div class="page-content-wrapper">
+<div class="page-content-wrapper">
       <div class="container">
         <div class="pt-3">
           <div class="hero-slides owl-carousel">
@@ -97,117 +89,31 @@
             <h6>Top Products</h6><a class="btn" href="shop-grid.html">View All</a>
           </div>
           <div class="row g-3">
-            <!-- Single Top Product Card -->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card product-card">
-                <div class="card-body">
-                  <!-- Badge--><span class="badge rounded-pill badge-warning">Sale</span>
-                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="lni lni-heart">                       </i></a>
-                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img class="mb-2" src="<?= base_url('assets/app_assets/img/product/01.jpg');?>" alt="">
-                    <!-- Offer Countdown Timer: Please use event time this format: YYYY/MM/DD hh:mm:ss -->
-                    <ul class="offer-countdown-timer d-flex align-items-center shadow-sm" data-countdown="2022/12/09 23:59:59">
-                      <li><span class="days">0</span>d</li>
-                      <li><span class="hours">0</span>h</li>
-                      <li><span class="minutes">0</span>m</li>
-                      <li><span class="seconds">0</span>s</li>
-                    </ul></a>
-                  <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Induction</a>
-                  <!-- Product Price -->
-                  <p class="sale-price">$13<span>$42</span></p>
-                  <!-- Rating -->
-                  <div class="product-rating"><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star"></i><i class="lni lni-star"></i></div>
-                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="lni lni-plus"></i></a>
-                </div>
-              </div>
-            </div>
-            <!-- Single Top Product Card -->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card product-card">
-                <div class="card-body">
-                  <!-- Badge--><span class="badge rounded-pill badge-success">New</span>
-                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="lni lni-heart">                       </i></a>
-                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img class="img-fluid"  src="<?= base_url('assets/app_assets/img/product/02.jpg')?>" alt=""></a>
-                  <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">LED TV</a>
-                  <!-- Product Price -->
-                  <p class="sale-price">$74<span>$99</span></p>
-                  <!-- Rating -->
-                  <div class="product-rating"><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i></div>
-                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="lni lni-plus"></i></a>
-                </div>
-              </div>
-            </div>
-            <!-- Single Top Product Card -->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card product-card">
-                <div class="card-body">
-                  <!-- Badge--><span class="badge rounded-pill badge-success">Sale</span>
-                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="lni lni-heart">                       </i></a>
-                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img class="mb-2" src="<?= base_url('assets/app_assets/img/product/6.png')?>" alt=""></a>
-                  <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Roof Lamp</a>
-                  <!-- Product Price -->
-                  <p class="sale-price">$99<span>$113</span></p>
-                  <!-- Rating -->
-                  <div class="product-rating"><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star"></i></div>
-                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="lni lni-plus"></i></a>
-                </div>
-              </div>
-            </div>
-            <!-- Single Top Product Card -->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card product-card">
-                <div class="card-body">
-                  <!-- Badge--><!-- <span class="badge rounded-pill badge-danger">-18%</span> -->
-                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="lni lni-heart">                       </i></a>
-                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img class="mb-2" src="<?= base_url('assets/app_assets/img/product/05.png')?>" alt="">
-                    <!-- Offer Countdown Timer: Please use event time this format: YYYY/MM/DD hh:mm:ss -->
-                    <!-- <ul class="offer-countdown-timer d-flex align-items-center shadow-sm" data-countdown="2021/11/23 23:21:29">
-                      <li><span class="days">0</span>d</li>
-                      <li><span class="hours">0</span>h</li>
-                      <li><span class="minutes">0</span>m</li>
-                      <li><span class="seconds">0</span>s</li>
-                    </ul> -->
-                  </a>
-                  <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Mobile</a>
-                  <!-- Product Price -->
-                  <p class="sale-price">$87<span>$92</span></p>
-                  <!-- Rating -->
-                  <div class="product-rating"><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star"></i><i class="lni lni-star"></i><i class="lni lni-star"></i></div>
-                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="lni lni-plus"></i></a>
-                </div>
-              </div>
-            </div>
-            <!-- Single Top Product Card -->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card product-card">
-                <div class="card-body">
-                  <!-- Badge--><!-- <span class="badge rounded-pill badge-danger">-11%</span> -->
-                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
-                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img class="mb-2" src="<?= base_url('assets/app_assets/img/product/06.png')?>" alt=""></a>
-                  <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">TAB</a>
-                  <!-- Product Price -->
-                  <p class="sale-price">$21<span>$25</span></p>
-                  <!-- Rating -->
-                  <div class="product-rating"><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star"></i><i class="lni lni-star"></i></div>
-                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="lni lni-plus"></i></a>
-                </div>
-              </div>
-            </div>
-            <!-- Single Top Product Card -->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card product-card">
-                <div class="card-body">
-                  <!-- Badge--><!-- <span class="badge rounded-pill badge-warning">On Sale</span> -->
-                  <!-- Wishlist Button--><a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
-                  <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img class="mb-2" src="<?= base_url('assets/app_assets/img/product/08.jpg')?>" alt=""></a>
-                  <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Ear Phone</a>
-                  <!-- Product Price -->
-                  <p class="sale-price">$38<span>$41</span></p>
-                  <!-- Rating -->
-                  <div class="product-rating"><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i></div>
-                  <!-- Add to Cart --><a class="btn btn-success btn-sm" href="#"><i class="lni lni-plus"></i></a>
-                </div>
-              </div>
-            </div>
+              <?php 
+                  if(!empty($products)){
+                    foreach ($products as $key => $value) {
+                      if($value['product_type']=='Top Products'){
+                      ?>
+                      <div class="col-6 col-md-4 col-lg-3">
+                        <div class="card product-card">
+                          <div class="card-body">
+                          
+                            
+                             <span class="badge rounded-pill badge-warning" style="float:right!important;"><?php echo $value['brand'];?></span>
+                              <span class="badge badge-primary" style="margin-left: 88px;"><?php echo $value['discount'].'%';?></span>
+                             <a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct/?id='.$value['id']);?>"><img class="mb-2" src="<?= base_url($value['image']);?>" alt="">
+                             </a>
+                             <a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>"><?php echo $value['product_name'];?></a>
+                             <p class="sale-price"><?php echo $value['offer_price'];?><span><?php echo $value['price'];?></span></p>
+                            <!--  <div class="product-rating"><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star"></i><i class="lni lni-star"></i></div> -->
+                             <a class="btn btn-success btn-sm" href="#"><i class="lni lni-plus"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                      <?php }
+                    }
+                  }
+              ?>
           </div>
         </div>
       </div>
@@ -228,93 +134,41 @@
           </div>
           <div class="row g-3">
             <!-- Single Weekly Product Card -->
-            <div class="col-12 col-md-6">
-              <div class="card horizontal-product-card">
-                <div class="card-body d-flex align-items-center">
-                  <div class="product-thumbnail-side">
-                    <!-- Badge --><span class="badge badge-success">Sale</span>
-                    <!-- Wishlist Button --><a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
-                    <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url('assets/app_assets/img/product/011.png')?>" alt=""></a>
-                  </div>
-                  <div class="product-description">
-                    <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Laptop</a>
-                    <!-- Price -->
-                    <p class="sale-price"><i class="lni lni-dollar"></i>$64<span>$89</span></p>
-                    <!-- Rating -->
-                    <div class="product-rating"><i class="lni lni-star-filled"></i>4.88 (39)</div>
-                    <!-- Buy Now Button --><a class="btn btn-danger btn-sm" href="#"><i class="me-1 lni lni-cart"></i>Buy Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Single Weekly Product Card -->
-            <div class="col-12 col-md-6">
-              <div class="card horizontal-product-card">
-                <div class="card-body d-flex align-items-center">
-                  <div class="product-thumbnail-side">
-                    <!-- Badge --><span class="badge badge-primary">Sale</span>
-                    <!-- Wishlist Button --><a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
-                    <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url('assets/app_assets/img/product/014.jpg')?>" alt=""></a>
-                  </div>
-                  <div class="product-description">
-                    <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Routers</a>
-                    <!-- Price -->
-                    <p class="sale-price"><i class="lni lni-dollar"></i>$100<span>$160</span></p>
-                    <!-- Rating -->
-                    <div class="product-rating"><i class="lni lni-star-filled"></i>4.82 (125)</div>
-                    <!-- Buy Now Button --><a class="btn btn-danger btn-sm" href="#"><i class="me-1 lni lni-cart"></i>Buy Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Single Weekly Product Card -->
-            <div class="col-12 col-md-6">
-              <div class="card horizontal-product-card">
-                <div class="card-body d-flex align-items-center">
-                  <div class="product-thumbnail-side">
-                    <!-- Badge --><span class="badge badge-danger">-10%</span>
-                    <!-- Wishlist Button --><a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
-                    <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url('assets/app_assets/img/product/012.jpg')?>" alt="">
-                      <!-- Offer Countdown Timer: Please use event time this format: YYYY/MM/DD hh:mm:ss -->
-                      <!-- <ul class="offer-countdown-timer d-flex align-items-center shadow-sm" data-countdown="2022/12/09 23:59:59">
-                        <li><span class="days">0</span>d</li>
-                        <li><span class="hours">0</span>h</li>
-                        <li><span class="minutes">0</span>m</li>
-                        <li><span class="seconds">0</span>s</li>
-                      </ul> -->
-                    </a>
-                  </div>
-                  <div class="product-description">
-                    <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Laptop</a>
-                    <!-- Price -->
-                    <p class="sale-price"><i class="lni lni-dollar"></i>$24<span>$32</span></p>
-                    <!-- Rating -->
-                    <div class="product-rating"><i class="lni lni-star-filled"></i>4.79 (63)</div>
-                    <!-- Buy Now Button --><a class="btn btn-danger btn-sm" href="#"><i class="me-1 lni lni-cart"></i>Buy Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Single Weekly Product Card -->
-            <div class="col-12 col-md-6">
-              <div class="card horizontal-product-card">
-                <div class="card-body d-flex align-items-center">
-                  <div class="product-thumbnail-side">
-                    <!-- Badge --><span class="badge badge-warning">New</span>
-                    <!-- Wishlist Button --><a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>
-                    <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url('assets/app_assets/img/product/016.png')?>" alt=""></a>
-                  </div>
-                  <div class="product-description">
-                    <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Refrigarator</a>
-                    <!-- Price -->
-                    <p class="sale-price"><i class="lni lni-dollar"></i>$31<span>$47</span></p>
-                    <!-- Rating -->
-                    <div class="product-rating"><i class="lni lni-star-filled"></i>4.99 (7)</div>
-                    <!-- Buy Now Button --><a class="btn btn-danger btn-sm" href="#"><i class="me-1 lni lni-cart"></i>Buy Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <?php 
+                  if(!empty($products)){
+                    foreach ($products as $key => $value) {
+                      if($value['product_type']=='Weeklt Best Sellers'){
+                        ?>
+                         <div class="col-12 col-md-6">
+                          <div class="card horizontal-product-card">
+                            <div class="card-body d-flex align-items-center">
+                              <div class="product-thumbnail-side">
+                                <!-- Badge --><span class="badge badge-primary"><?php echo $value['discount'].'%';?></span>
+
+                                <span class="badge badge-success"><?php echo $value['brand'];?></span>
+                                <!-- Wishlist Button --><!-- <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a> -->
+                                <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url($value['image'])?>" alt=""></a>
+                              </div>
+                              <div class="product-description">
+                                <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>"><?php echo $value['product_name'];?></a>
+                                <!-- Price -->
+                                <p class="sale-price"><i class="lni lni-dollar"></i><?php echo $value['offer_price'];?><span><?php echo $value['price'];?></span></p>
+                                <!-- Rating -->
+                               <!--  <div class="product-rating"><i class="lni lni-star-filled"></i>4.88 (39)</div> -->
+                                <!-- Buy Now Button --><a class="btn btn-danger btn-sm" href="#"><i class="me-1 lni lni-cart"></i>Buy Now</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <?php
+                      }
+                    }
+                  }
+                 ?>
+           
+           
+            
+            
           </div>
         </div>
       </div>
@@ -337,73 +191,30 @@
           </div>
           <div class="row g-3">
             <!-- Featured Product Card-->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card featured-product-card">
-                <div class="card-body">
-                  <!-- Badge--><span class="badge badge-warning custom-badge"><i class="lni lni-star"></i></span>
-                  <div class="product-thumbnail-side">
-                    <!-- Wishlist Button --><a class="wishlist-btn shadow-sm border" href="#"><i class="lni lni-heart"></i></a>
-                    <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url('assets/app_assets/img/product/018.jpg')?>" alt=""></a>
-                  </div>
-                  <div class="product-description">
-                    <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Air Conditioner</a>
-                    <!-- Price -->
-                    <p class="sale-price">$39.8<span>$89</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Featured Product Card-->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card featured-product-card">
-                <div class="card-body">
-                  <!-- Badge--><span class="badge badge-warning custom-badge"><i class="lni lni-star"></i></span>
-                  <div class="product-thumbnail-side">
-                    <!-- Wishlist Button --><a class="wishlist-btn shadow-sm border" href="#"><i class="lni lni-heart"></i></a>
-                    <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url('assets/app_assets/img/product/019.png')?>" alt=""></a>
-                  </div>
-                  <div class="product-description">
-                    <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Ceiling Fan</a>
-                    <!-- Price -->
-                    <p class="sale-price">$14.7<span>$21</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Featured Product Card-->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card featured-product-card">
-                <div class="card-body">
-                  <!-- Badge--><span class="badge badge-warning custom-badge"><i class="lni lni-star"></i></span>
-                  <div class="product-thumbnail-side">
-                    <!-- Wishlist Button --><a class="wishlist-btn shadow-sm border" href="#"><i class="lni lni-heart"></i></a>
-                    <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url('assets/app_assets/img/product/120.jpg')?>" alt=""></a>
-                  </div>
-                  <div class="product-description">
-                    <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Fan</a>
-                    <!-- Price -->
-                    <p class="sale-price">$3.69<span>$5</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Featured Product Card-->
-            <div class="col-6 col-md-4 col-lg-3">
-              <div class="card featured-product-card">
-                <div class="card-body">
-                  <!-- Badge--><span class="badge badge-warning custom-badge"><i class="lni lni-star"></i></span>
-                  <div class="product-thumbnail-side">
-                    <!-- Wishlist Button --><a class="wishlist-btn shadow-sm border" href="#"><i class="lni lni-heart"></i></a>
-                    <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url('assets/app_assets/img/product/6.png')?>" alt=""></a>
-                  </div>
-                  <div class="product-description">
-                    <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>">Roof Lamp</a>
-                    <!-- Price -->
-                    <p class="sale-price">$27.9<span>$31</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
+               <?php 
+                  if(!empty($products)){
+                    foreach ($products as $key => $value) {
+                      if($value['product_type']=='Fearured Products'){
+                      ?>
+                      <div class="col-6 col-md-4 col-lg-3">
+                        <div class="card featured-product-card">
+                          <div class="card-body">
+                            <!-- Badge--><span class="badge badge-warning custom-badge"><i class="lni lni-star"></i></span>
+                            <div class="product-thumbnail-side">
+                              <!-- Wishlist Button --><a class="wishlist-btn shadow-lg border" href="#"><?= $value['discount'].'%';?></a>
+                              <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct');?>"><img src="<?= base_url($value['image'])?>" alt=""></a>
+                            </div>
+                            <div class="product-description">
+                              <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct');?>"><?= $value['product_name'];?></a>
+                              <!-- Price -->
+                              <p class="sale-price"><?= $value['offer_price'];?><span><?= $value['price']?></span></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <?php
+                    }}
+                  }?>
           </div>
         </div>
       </div>

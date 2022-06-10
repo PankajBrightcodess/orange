@@ -3,11 +3,10 @@
         <!-- Product Slides-->
         <div class="product-slides owl-carousel">
           <!-- Single Hero Slide-->
-          <div class="single-product-slide" style="background-image: url(<?= base_url('assets/app_assets/img/product/01.jpg');?>)"></div>
+          <div class="single-product-slide" style="background-image: url(<?= base_url($product_details['image']);?>)"></div>
           <!-- Single Hero Slide-->
-          <div class="single-product-slide" style="background-image: url(<?= base_url('assets/app_assets/img/product/01.jpg');?>)"></div>
-          <!-- Single Hero Slide-->
-          <div class="single-product-slide" style="background-image: url(<?= base_url('assets/app_assets/img/product/01.jpg');?>)"></div>
+          <!-- <div class="single-product-slide" style="background-image: url(<?= base_url('assets/app_assets/img/product/01.jpg');?>)"></div>
+          <div class="single-product-slide" style="background-image: url(<?= base_url('assets/app_assets/img/product/01.jpg');?>)"></div> -->
         </div>
         <!-- Video Button--><!-- <a class="video-btn shadow-sm" id="singleProductVideoBtn" href="https://www.youtube.com/watch?v=lFGvqvPh5jI">
           <svg class="bi bi-play text-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
@@ -19,27 +18,24 @@
         <div class="product-title-meta-data bg-white mb-3 py-3">
           <div class="container d-flex justify-content-between">
             <div class="p-title-price">
-              <h6 class="mb-1">Induction</h6>
-              <p class="sale-price mb-0">$13<span>$42</span></p>
+              <h6 class="mb-1"><?php echo $product_details['product_name'];?></h6>
+              <p class="sale-price mb-0"><?php echo 'Rs./-'.$product_details['offer_price'];?><span><?php echo $product_details['price'].'Rs./-';?></span></p>
             </div>
             <div class="p-wishlist-share"><a href="wishlist-grid.html"><i class="lni lni-heart"></i></a></div>
           </div>
           <div class="product-ratings">
             <div class="container d-flex align-items-center justify-content-between">
-              <div class="ratings"><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><span class="ps-1">3 ratings</span></div>
-              <div class="total-result-of-ratings"><span>5.0</span><span>Very Good                                </span></div>
+              <div class="ratings"></div>
+              <div class="total-result-of-ratings"><span><?= $product_details['discount'];?></span><span>Very Good</span></div>
             </div>
           </div>
         </div>
         <!-- Flash Sale Panel-->
-        <div class="flash-sale-panel bg-white mb-3 py-3">
+       <!--  <div class="flash-sale-panel bg-white mb-3 py-3">
           <div class="container">
-            <!-- Sales Offer Content-->
             <div class="sales-offer-content d-flex align-items-end justify-content-between">
-              <!-- Sales End-->
               <div class="sales-end">
                 <p class="mb-1 font-weight-bold"><i class="lni lni-bolt"></i> Flash sale end in</p>
-                <!-- Please use event time this format: YYYY/MM/DD hh:mm:ss-->
                 <ul class="sales-end-timer ps-0 d-flex align-items-center" data-countdown="2022/04/29 14:21:37">
                   <li><span class="days">0</span>d</li>
                   <li><span class="hours">0</span>h</li>
@@ -47,7 +43,6 @@
                   <li><span class="seconds">0</span>s</li>
                 </ul>
               </div>
-              <!-- Sales Volume-->
               <div class="sales-volume text-end">
                 <p class="mb-1 font-weight-bold">52% Sold Out</p>
                 <div class="progress" style="height: 6px;">
@@ -56,7 +51,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- 
         <div class="selection-panel bg-white mb-3 py-3">
           <div class="container d-flex align-items-center justify-content-between">
@@ -103,12 +98,14 @@
         <!-- Add To Cart-->
         <div class="cart-form-wrapper bg-white mb-3 py-3">
           <div class="container">
-            <form class="cart-form" action="#" method="">
+            <form class="cart-form" action="<?php echo base_url('app_control/add_cart')?>" method="POST">
               <div class="order-plus-minus d-flex align-items-center">
                 <div class="quantity-button-handler">-</div>
-                <input class="form-control cart-quantity-input" type="text" step="1" name="quantity" value="1">
+                <input class="form-control cart-quantity-input" type="text" step="1" name="qty" value="1">
                 <div class="quantity-button-handler">+</div>
               </div>
+                <input type="hidden" name="product_id" value="<?php echo $product_details['id'];?>">
+                <input type="hidden" name="amount" value="<?php echo $product_details['offer_price'];?>">
               <button class="btn btn-danger ms-3" type="submit">Add To Cart</button>
             </form>
           </div>
@@ -117,14 +114,7 @@
         <div class="p-specification bg-white mb-3 py-3">
           <div class="container">
             <h6>Specifications</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, eum? Id, culpa? At officia quisquam laudantium nisi mollitia nesciunt, qui porro asperiores cum voluptates placeat similique recusandae in facere quos vitae?</p>
-            <ul class="mb-3 ps-3">
-              <li><i class="lni lni-checkmark-circle"> </i> 100% Good Reviews</li>
-              <li><i class="lni lni-checkmark-circle"> </i> 7 Days Returns</li>
-              <li> <i class="lni lni-checkmark-circle"> </i> Warranty not Aplicable</li>
-              <li> <i class="lni lni-checkmark-circle"> </i> 100% Brand New Product</li>
-            </ul>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, eum? Id, culpa? At officia quisquam laudantium nisi mollitia nesciunt, qui porro asperiores cum voluptates placeat similique recusandae in facere quos vitae?</p>
+            <p><?php echo $product_details['description'];?></p>
           </div>
         </div>
         <!-- Product Video -->
@@ -198,12 +188,11 @@
           </div>
         </div> -->
         <!-- Rating & Review Wrapper -->
-        <div class="rating-and-review-wrapper bg-white py-3 mb-3">
+        <!-- <div class="rating-and-review-wrapper bg-white py-3 mb-3">
           <div class="container">
             <h6>Ratings &amp; Reviews</h6>
             <div class="rating-review-content">
               <ul class="ps-0">
-                <!-- Single User Review -->
                 <li class="single-user-review d-flex">
                   <div class="user-thumbnail"><img src="img/bg-img/7.jpg" alt=""></div>
                   <div class="rating-comment">
@@ -211,7 +200,6 @@
                     <p class="comment mb-0">Very good product. It's just amazing!</p><span class="name-date">Designing World 12 Dec 2021</span><a class="review-image mt-2 border rounded" href="img/product/3.png"><img class="rounded-3" src="img/product/3.png" alt=""></a>
                   </div>
                 </li>
-                <!-- Single User Review -->
                 <li class="single-user-review d-flex">
                   <div class="user-thumbnail"><img src="img/bg-img/8.jpg" alt=""></div>
                   <div class="rating-comment">
@@ -219,7 +207,6 @@
                     <p class="comment mb-0">Very excellent product. Love it.</p><span class="name-date">Designing World 8 Dec 2021</span><a class="review-image mt-2 border rounded" href="img/product/4.png"><img class="rounded-3" src="img/product/4.png" alt=""></a><a class="review-image mt-2 border rounded" href="img/product/6.png"><img class="rounded-3" src="img/product/6.png" alt=""></a>
                   </div>
                 </li>
-                <!-- Single User Review -->
                 <li class="single-user-review d-flex">
                   <div class="user-thumbnail"><img src="img/bg-img/9.jpg" alt=""></div>
                   <div class="rating-comment">
@@ -230,9 +217,9 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- Ratings Submit Form-->
-        <div class="ratings-submit-form bg-white py-3">
+        <!-- <div class="ratings-submit-form bg-white py-3">
           <div class="container">
             <h6>Submit A Review</h6>
             <form action="#" method="">
@@ -252,6 +239,6 @@
               <button class="btn btn-sm btn-primary" type="submit">Save Review</button>
             </form>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>

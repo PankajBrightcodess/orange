@@ -203,5 +203,46 @@ class App_model extends CI_Model{
     		return $result;
     	}
 
+    	// '''''''''''''''''''''''product''''''''''''''''''''''''''''
+
+
+    public function productslist(){
+    	$this->db->where('t1.status',1);
+		$this->db->select('t1.*,t2.name as category_name,t3.product_type,t4.brand');
+		$this->db->from('product t1');
+		$this->db->join('category t2','t1.catg_id=t2.id','left');
+		$this->db->join('product_type t3','t1.type_id=t3.id','left');
+		$this->db->join('brand t4','t1.brand_id=t4.id','left');
+		$qry = $this->db->get();
+		return $qry->result_array();
+    }
+
+
+    public function product_details_by_id($id){
+    	$this->db->where(['t1.status'=>1,'t1.id'=>$id]);
+		$this->db->select('t1.*,t2.name as category_name,t3.product_type,t4.brand');
+		$this->db->from('product t1');
+		$this->db->join('category t2','t1.catg_id=t2.id','left');
+		$this->db->join('product_type t3','t1.type_id=t3.id','left');
+		$this->db->join('brand t4','t1.brand_id=t4.id','left');
+		$qry = $this->db->get();
+		return $qry->row_array();
+
+    }
+
+    public function add_cart_amount($data){
+    	$result = $this->db->insert('cart',$data);
+    	if($result){
+				return true;
+			}else{
+				return false;
+			}
+    }
+
+    public function count_cart($member_id){
+    	$query=$this->db->get_where('cart',array(['customer_id' => $member_id,'status'=>'1']));
+		return  $query->num_rows();
+    }
+
 	
 }

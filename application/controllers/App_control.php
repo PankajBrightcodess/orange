@@ -5,6 +5,7 @@ class App_control extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		check_and_setcookie();
+		// cart_count();
       // $this->load->model('Website_model');
       // $this->load->helper('cookie');
 	}
@@ -56,6 +57,9 @@ class App_control extends CI_Controller {
 
     public function home(){
     	$data['title']='Home Page';
+    	$data['products'] = $this->App_model->productslist();
+    	// echo PRE;
+    	// print_r($data['products']);die;
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
     	$this->load->view('app/include/sidebar');
@@ -102,6 +106,8 @@ class App_control extends CI_Controller {
     }
     
     public function singleproduct(){
+    	$id = $this->input->get('id');
+    	$data['product_details'] = $this->App_model->product_details_by_id($id);
     	$data['title']='Single Product';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -431,6 +437,29 @@ class App_control extends CI_Controller {
                  
       }      
       redirect('/');
+    }
+
+
+    public function add_cart(){
+    	$data = $this->input->post();
+    	$member_id = $_SESSION['member_id'];
+    	$data['customer_id']=$member_id;
+    	$data['added_on']=date('Y-m-d');
+    	$result = $this->App_model->add_cart_amount($data);
+    	if($result){	
+   			$this->session->set_userdata($result);
+   		  redirect('app_control/redirectpages');
+   		}else{
+   			$this->session->set_flashdata('web_err_msg','Please Try Again!');
+   		  redirect('app_control/redirectpages');
+   		}
+
+    }
+
+    public function cart_count(){
+    	$member_id = $_SESSION['member_id'];
+    	$result = $this->App_model->count_cart($member_id);
+    	
     }
 
     

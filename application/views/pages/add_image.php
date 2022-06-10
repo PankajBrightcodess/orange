@@ -10,21 +10,22 @@
                     <div class="card-body">
                     <div class="row">
                         	<div class="col-md-5 col-lg-4">
-                                <?php echo form_open_multipart('admin/add_category');?>
+                                <?php echo form_open_multipart('admin/add_image');?>
                                 <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <?php echo form_input(array('type'=>'text','name'=>'name','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Enter Category Name','required'=>'true'));?>
+                                        <?php echo form_input(array('type'=>'hidden','name'=>'id','id'=>'activate_menu','class'=>'form-control','value'=>$id,'placeholder'=>'Enter Category Name','required'=>'true'));?>
                                     </div>                                    
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <?php echo form_input(array('type'=>'file','name'=>'image','id'=>'image','class'=>'form-control'));?>
-                                    </div>                                    
+                                <div class="form-group row imagess mb-2">
+                                    <div class="col-sm-10 ">
+                                        <?php echo form_input(array('type'=>'file','name'=>'image[]','id'=>'image','class'=>'form-control image'));?>
+                                    </div> 
+                                    <div class="col-md-2"><button type="button" class="btn btn-sm btn-info btn-sm add_image"><i class="fa fa-plus" aria-hidden="true"></i></button>  </div>                                 
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4">
-                                        <?php echo form_submit(array('name'=>'save_cat','id'=>'save_cat','class'=>'form-control btn btn-success'));?>
+                                        <?php echo form_submit(array('id'=>'save_cat','class'=>'form-control btn btn-success'));?>
                                     </div>
                                     <div class="col-md-4"></div>                                    
                                 </div>
@@ -194,5 +195,35 @@
 			});
 		});
         $('#parent_id').trigger('change');
+
+        var max_fields      = 5; 
+          var wrapper       = $();
+          var add_button      = $(".add_image");
+          var x = 1;
+          $(add_button).click(function(e){
+            e.preventDefault();
+            if(x < max_fields){
+              x++;
+              $(".imagess").append("<div class='form-group row main mt-2'><div class='col-sm-10'><input type='file' class='form-control' name='image[]'></div><div class='col-md-2'><button type='button' class='btn btn-sm btn-danger btn-sm remove_equipment'><i class='fa fa-minus' aria-hidden='true'></i></button></div></div>"); 
+            }
+          });
+          $('body').on('click','.remove_equipment', function(e){ 
+          
+            e.preventDefault(); 
+            $(this).closest('.main').remove(); 
+            x--;
+          });
+
+
+
+
+
     });
 </script>
+
+<!-- <script type="text/javascript">
+    $(document).ready(function() {
+        
+  
+});
+</script> -->
