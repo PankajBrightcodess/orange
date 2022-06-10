@@ -147,10 +147,10 @@
 
                                 <span class="badge badge-success"><?php echo $value['brand'];?></span>
                                 <!-- Wishlist Button --><!-- <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a> -->
-                                <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct?id='.$value['id']);?>"><img src="<?= base_url($value['image'])?>" alt=""></a>
+                                <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct/?id='.$value['id']);?>"><img src="<?= base_url($value['image'])?>" alt=""></a>
                               </div>
                               <div class="product-description">
-                                <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct?id='.$value['id']);?>"><?php echo $value['product_name'];?></a>
+                                <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct/?id='.$value['id']);?>"><?php echo $value['product_name'];?></a>
                                 <!-- Price -->
                                 <p class="sale-price"><i class="lni lni-dollar"></i><?php echo $value['offer_price'];?><span><?php echo $value['price'];?></span></p>
                                 <!-- Rating -->
@@ -202,10 +202,10 @@
                             <!-- Badge--><span class="badge badge-warning custom-badge"><i class="lni lni-star"></i></span>
                             <div class="product-thumbnail-side">
                               <!-- Wishlist Button --><a class="wishlist-btn shadow-lg border" href="#"><?= $value['discount'].'%';?></a>
-                              <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct?id='.$value['id']);?>"><img src="<?= base_url($value['image'])?>" alt=""></a>
+                              <!-- Thumbnail --><a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct/?id='.$value['id']);?>"><img src="<?= base_url($value['image'])?>" alt=""></a>
                             </div>
                             <div class="product-description">
-                              <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct?id='.$value['id']);?>"><?= $value['product_name'];?></a>
+                              <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct/?id='.$value['id']);?>"><?= $value['product_name'];?></a>
                               <!-- Price -->
                               <p class="sale-price"><?= $value['offer_price'];?><span><?= $value['price']?></span></p>
                             </div>

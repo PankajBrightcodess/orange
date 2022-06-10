@@ -58,8 +58,8 @@ class App_control extends CI_Controller {
     public function home(){
     	$data['title']='Home Page';
     	$data['products'] = $this->App_model->productslist();
-    	echo PRE;
-    	print_r($data['products']);die;
+    	// echo PRE;
+    	// print_r($data['products']);die;
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
     	$this->load->view('app/include/sidebar');
