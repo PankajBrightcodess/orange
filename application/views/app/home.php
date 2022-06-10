@@ -137,7 +137,7 @@
             <?php 
                   if(!empty($products)){
                     foreach ($products as $key => $value) {
-                      if($value['product_type']=='Weeklt Best Sellers'){
+                      if($value['product_type']=='Weekly Best Sellers'){
                         ?>
                          <div class="col-12 col-md-6">
                           <div class="card horizontal-product-card">
@@ -194,7 +194,7 @@
                <?php 
                   if(!empty($products)){
                     foreach ($products as $key => $value) {
-                      if($value['product_type']=='Fearured Products'){
+                      if($value['product_type']=='Featured Products'){
                       ?>
                       <div class="col-6 col-md-4 col-lg-3">
                         <div class="card featured-product-card">
