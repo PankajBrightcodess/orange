@@ -58,8 +58,6 @@ class App_control extends CI_Controller {
     public function home(){
     	$data['title']='Home Page';
     	$data['products'] = $this->App_model->productslist();
-    	// echo PRE;
-    	// print_r($data['products']);die;
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
     	$this->load->view('app/include/sidebar');
@@ -108,6 +106,8 @@ class App_control extends CI_Controller {
     public function singleproduct(){
     	$id = $this->input->get('id');
     	$data['product_details'] = $this->App_model->product_details_by_id($id);
+    	echo PRE;
+    	print_r($data['product_details']);die;
     	$data['title']='Single Product';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
