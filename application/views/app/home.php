@@ -104,7 +104,7 @@
                              <a class="product-thumbnail d-block" href="<?= base_url('app_control/singleproduct/'.$value['id']);?>"><img class="mb-2" src="<?= base_url($value['image']);?>" alt="">
                              </a>
                              <a class="product-title d-block" href="<?= base_url('app_control/singleproduct/'.$value['id']);?>"><?php echo $value['product_name'];?></a>
-                             <p class="sale-price"><?php echo $value['offer_price'];?><span><?php echo $value['price'];?></span></p>
+                             <p class="sale-price">₹<?php echo $value['offer_price'];?><span>₹<?php echo $value['price'];?></span></p>
                              <a class="btn btn-success btn-sm" href="#"><i class="lni lni-plus"></i></a>
                           </div>
                         </div>
@@ -149,7 +149,7 @@
                               </div>
                               <div class="product-description">
                                  <a class="product-title d-block" href="<?= base_url('app_control/singleproduct/'.$value['id']);?>"><?php echo $value['product_name'];?></a>
-                                <p class="sale-price"><i class="lni lni-dollar"></i><?php echo $value['offer_price'];?><span><?php echo $value['price'];?></span></p>
+                                <p class="sale-price"><i class="lni lni-dollar">₹</i><?php echo $value['offer_price'];?><span>₹<?php echo $value['price'];?></span></p>
                                 <a class="btn btn-danger btn-sm" href="#"><i class="me-1 lni lni-cart"></i>Buy Now</a>
                               </div>
                             </div>
@@ -202,7 +202,7 @@
                             <div class="product-description">
                               <!-- Product Title --><a class="product-title d-block" href="<?= base_url('app_control/singleproduct/'.$value['id']);?>"><?= $value['product_name'];?></a>
                               <!-- Price -->
-                              <p class="sale-price"><?= $value['offer_price'];?><span><?= $value['price']?></span></p>
+                              <p class="sale-price">₹<?= $value['offer_price'];?><span>₹<?= $value['price']?></span></p>
                             </div>
                           </div>
                         </div>

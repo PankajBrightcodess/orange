@@ -5,9 +5,6 @@ class App_control extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		check_and_setcookie();
-		// cart_count();
-      // $this->load->model('Website_model');
-      // $this->load->helper('cookie');
 	}
 
     public function index(){ 
@@ -57,6 +54,7 @@ class App_control extends CI_Controller {
 
     public function home(){
     	$data['title']='Home Page';
+    	$data['count_cart']=$this->cart_count();
     	$data['products'] = $this->App_model->productslist();
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -67,6 +65,11 @@ class App_control extends CI_Controller {
     }
 
     public function cart(){
+    	$member_id = $_SESSION['member_id'];
+    	$data['count_cart']=$this->cart_count();
+    	$data['cart_item'] = $this->App_model->cart_list($member_id);
+    	// echo PRE;
+    	// print_r($data['cart_item']);die;
     	$data['title']='Cart Proceed';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -77,6 +80,13 @@ class App_control extends CI_Controller {
     }
 
     public function checkout(){
+    	$amount = $this->uri->segment(3);
+    	$extra['extra'] = $this->uri->segment(4);
+    	$member_id = $_SESSION['member_id'];
+    	$data['member_details'] = $this->App_model->get_member_details($member_id);
+    	$data['amount'] =$amount;
+    	$data['extra'] =$extra;
+    	$data['count_cart']=$this->cart_count();
     	$data['title']='Checkout';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -90,6 +100,7 @@ class App_control extends CI_Controller {
     	if(!empty($_SESSION['pay_id'])){
     		$pay_id = $this->session->userdata('pay_id');
     		$data['payment'] = $this->App_model->member_details($pay_id);
+	    	$data['count_cart']=$this->cart_count();
 	    	$data['title']='Make Payment';
 	    	$this->load->view('app/include/header-link',$data);
 	    	$this->load->view('app/include/header');
@@ -107,6 +118,7 @@ class App_control extends CI_Controller {
     	// $id = $this->input->get('id');
     	$id=$this->uri->segment(3);
     	$data['product_details'] = $this->App_model->product_details_by_id($id);
+    	$data['count_cart']=$this->cart_count();
     	$data['title']='Single Product';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -117,6 +129,7 @@ class App_control extends CI_Controller {
     }
 
     public function product_page(){
+    	$data['count_cart']=$this->cart_count();
     	$data['title']='Product List';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -184,6 +197,7 @@ class App_control extends CI_Controller {
     }
 
     public function sharelink(){
+    	$data['count_cart']=$this->cart_count();
     	$data['title']='Single Product';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -225,6 +239,7 @@ class App_control extends CI_Controller {
 
  	public function silver(){
  			$data['list']=$this->Account_model->stacklist();
+    	$data['count_cart']=$this->cart_count();
     	$data['title']='Silver Stake';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -235,6 +250,7 @@ class App_control extends CI_Controller {
     }
     public function gold(){
     	$data['list']=$this->Account_model->stacklist();
+    	$data['count_cart']=$this->cart_count();
     	$data['title']='Gold Stake';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -245,6 +261,7 @@ class App_control extends CI_Controller {
     }
       public function currency(){
       	$data['list']=$this->Account_model->stacklist();
+    	$data['count_cart']=$this->cart_count();
     	$data['title']='Currency Stake';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -255,6 +272,7 @@ class App_control extends CI_Controller {
      }
      public function platinum(){
      	$data['list']=$this->Account_model->stacklist();
+    	$data['count_cart']=$this->cart_count();
     	$data['title']='Currency Stake';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -265,6 +283,7 @@ class App_control extends CI_Controller {
      }
 
      public function profile(){
+    	$data['count_cart']=$this->cart_count();
     	$data['title']='Currency Stake';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -275,6 +294,7 @@ class App_control extends CI_Controller {
      }
 
      public function our_team(){
+     	$data['count_cart']=$this->cart_count();
      	$data['title']='Our Team Earn';
     	$this->load->view('app/include/header-link',$data);
     	$this->load->view('app/include/header');
@@ -440,12 +460,16 @@ class App_control extends CI_Controller {
 
 
     public function add_cart(){
-    	$data = $this->input->post();
     	$member_id = $_SESSION['member_id'];
+    	$data = $this->input->post();
+    	// $member_id = $_SESSION['member_id'];
     	$data['customer_id']=$member_id;
     	$data['added_on']=date('Y-m-d');
+    	// echo PRE;
+    	// print_r($data);die;
     	$result = $this->App_model->add_cart_amount($data);
-    	if($result){	
+    	if($result){
+    	    $this->cart_count();	
    			$this->session->set_userdata($result);
    		  redirect('app_control/redirectpages');
    		}else{
@@ -455,11 +479,100 @@ class App_control extends CI_Controller {
 
     }
 
+    public function makepayment(){
+    	if(!empty($_SESSION['member_id'])){
+    		// echo PRE;
+    		// print_r();die;
+    		$id = $_SESSION['last_id'];
+    		$data['payment'] = $this->App_model->order_list($id);
+	    	$data['count_cart']=$this->cart_count();
+	    	$data['title']='Make Payment';
+	    	$this->load->view('app/include/header-link',$data);
+	    	$this->load->view('app/include/header');
+	    	$this->load->view('app/include/sidebar');
+	    	$this->load->view('app/product_payment',$data);
+	    	$this->load->view('app/include/footer');
+	    	$this->load->view('app/include/footer-link');
+
+    	}
+    }
+
+    public function product_success(){
+      $postdata = $this->input->post();
+      $payment_id = $postdata ['razorpay_payment_id'];
+      $paymentdetail = json_encode($postdata);
+      $order_id = $_SESSION['last_id'];
+      if(!empty($order_id)){
+      	 $result = $this->App_model->insert_payment($order_id,$payment_id,$paymentdetail);
+            if($result==true){
+            	$res = $this->App_model->update_order();
+            	if($res){
+            		redirect('app_control/payment_successed');
+                	$this->session->set_flashdata('request_msg',"Order Placed Successfully !!");
+            	}
+            	else{
+                	$this->session->set_flashdata('request_err_msg',"Order Not Placed");
+            	}	
+            }else{
+            	$this->session->set_flashdata('request_err_msg',"Order Not Placed");
+            }         
+      }      
+      redirect('/');
+    }
+
+    public function order_placed(){
+    	$data = $this->input->post();
+    	$orderids = strtoupper(random_string('numeric', 4)).random_string('numeric', 4);
+    	$order_id = 'ORDER-'.$orderids;
+    	$data['customer_id']=$_SESSION['member_id'];
+    	$data['order_no']=$order_id;
+    	$data['added_on']=date('Y-m-d H:i:s');
+    	$result = $this->App_model->add_add_place_order($data);
+    	if($result){
+    	    $this->cart_count();	
+   			// $this->session->set_userdata($result);
+   		  redirect('app_control/makepayment');
+   		}else{
+   			$this->session->set_flashdata('web_err_msg','Please Try Again!');
+   		  redirect('app_control/redirectpages');
+   		}
+    }
+
     public function cart_count(){
     	$member_id = $_SESSION['member_id'];
     	$result = $this->App_model->count_cart($member_id);
-    	
+    	return $result;
     }
+
+    public function product_payment_success(){
+      $postdata = $this->input->post();
+      $payment_id = $postdata ['razorpay_payment_id'];
+      $paymentdetail = json_encode($postdata);
+      $pay_id = $this->session->userdata('pay_id');
+      if(!empty($pay_id)){
+            $updatestatus= $this->db->update('payment',array('payment_status'=>'1','payment_details'=>$paymentdetail,'payment_id'=>$payment_id),array('id'=>$pay_id));
+            if($updatestatus==true){
+            	$update = $this->App_model->trans_wallet();
+            		redirect('app_control/payment_success');
+                $this->session->set_flashdata('request_msg',"Order Placed Successfully !!");
+            }else{
+            	$this->session->set_flashdata('request_err_msg',"Order Not Placed");
+            }        
+      }      
+      redirect('/');
+    }
+
+    public function payment_successed(){
+    	$data['title']='Payment Method';
+    	$this->load->view('app/include/header-link',$data);
+    	$this->load->view('app/include/header4');
+    	$this->load->view('app/include/sidebar');
+    	$this->load->view('app/payment_success');
+    	$this->load->view('app/include/footer');
+    	$this->load->view('app/include/footer-link');
+    }
+
+    
 
     
 

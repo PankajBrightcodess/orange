@@ -47,29 +47,48 @@
                                ?><label><strong> No Record Found !</strong></label><?php 
                             }
                             ?> -->
-
-                            
-
                            <div class="row">
-                                <div class="col-md-4">
-                                     <img src="<?= base_url('assets/app_assets/img/product/01.jpg');?>"width="50%">
-                                     <p>Quantity : 1</p>
-                                </div>
-                                 <div class="col-md-4">
-                                   <strong>Product Name</strong> <br>
-                                   <span style="color:red"><s>$99/-</s></span> &nbsp;&nbsp; <span style="color:green">$74/-</span>
-                                </div>
-                                 <div class="col-md-4">
-                                    <strong>Product Description</strong><i class="lni lni-trash-can"></i><hr>
-                                    <p>About Project</p>
+                            <?php
+                                if(!empty($cart_item)){
+                                        $amount = 0;
+                                        $extra = 0;                          
+                                    foreach ($cart_item as $key => $value) {
+                                        $amount = ($amount+$value['offer_price'])*$value['qty'];
+                                        $extra = ($extra+$value['price'])*$value['qty'];
+                                        $saving = $extra-$amount;
 
-                                </div>
+                                        ?>
+                                            <div class="col-md-12">
+                                               <strong><h5><?= $value['product_name'];?></h5></strong> <br>
+                                            </div>
+                                            <div class="col-md-12">
+                                                 <img src="<?= base_url($value['image']);?>"width="50%">
+                                                 <p>Quantity : <?= $value['qty'];?></p>
+                                            </div>
+                                            <div class="col-md-12">
+                                               <strong>Price</strong> <br>
+                                               <span style="color:red"><s>₹<?= $value['price'];?>/-</s></span> &nbsp;&nbsp; <span style="color:green">₹<?= $value['offer_price'];?>/-</span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <strong>Product Description</strong><i class="lni lni-trash-can"></i><hr>
+                                                <p><?= $value['description'];?></p>
+                                            </div>
+
+                                        <?php
+                                    }
+                                    
+                                }
+                            ?>
+                                
                             </div><hr> 
                             <div class="row">
                                 <div class="col-12 mb-3"><a href="<?php echo base_url('app_control/home');?>" class="btn btn-warning btn-sm form-control">Continue Shoping</a></div>
-                                <div class="col-12"><a href="<?php echo base_url('app_control/checkout');?>" class="btn btn-success btn-sm form-control">Proceed To Checkout</a></div>
+                                <div class="col-12">
+                                        
+                                    <a href="<?php echo base_url('app_control/checkout/'.$amount.'/'.$extra);?>" class="btn btn-success btn-sm form-control">Proceed To Checkout</a>
+                                </div>
                                 
-                                
+                                </form>
                             </div>
                           </div>
                         </div>
@@ -80,9 +99,9 @@
                            Price Details
                           </div>
                           <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><div class="row"><div class="col-md-6">Price</div><div class="col-md-6" style="float:right">₹&nbsp;<?php echo $totaladd;?></div></div></li>
-                            <li class="list-group-item"><div class="row"><div class="col-md-6">Saving Amount</div><div class="col-md-6" style="color:red; float: right;">₹0.00</div></div></li>
-                            <li class="list-group-item"><div class="row"><div class="col-md-6">Pay Amount</div><div class="col-md-6"style="color:green; float: right;">₹&nbsp;<?php echo $totaladd;?></div></div></li>
+                            <li class="list-group-item"><div class="row"><div class="col-md-6">Price</div><div class="col-md-6" style="float:right">₹&nbsp;<?php echo $extra;?></div></div></li>
+                            <li class="list-group-item"><div class="row"><div class="col-md-6">Saving Amount</div><div class="col-md-6" style="color:red; float: right;">₹&nbsp;<?php echo $saving;?></div></div></li>
+                            <li class="list-group-item"><div class="row"><div class="col-md-6">Pay Amount</div><div class="col-md-6"style="color:green; float: right;">₹&nbsp;<?php echo $amount;?></div></div></li>
                           </ul>
                         </div>
                     </div>

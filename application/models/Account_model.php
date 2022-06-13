@@ -624,6 +624,23 @@ class Account_model extends CI_Model{
 		}
 	}
 
+	public function get_orderlist(){
+		$this->db->select('t1.*,t2.name,t2.contact as mobile_no,t2.email');
+		$this->db->from('org_order t1');
+		$this->db->join('org_member t2','t1.customer_id=t2.id','left');
+		$qry = $this->db->get();
+		return $qry->result_array();
+	}
+
+	public function order_listing($order_no){
+		$this->db->where('t1.order_id',$order_no);
+		$this->db->select('t1.order_id,t1.qnty,t2.*');
+		$this->db->from('order_details t1');
+		$this->db->join('product t2','t1.product_id=t2.id','left');
+		$qry = $this->db->get();
+		return $qry->result_array();
+	}
+
 	
 
 

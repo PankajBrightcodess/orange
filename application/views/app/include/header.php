@@ -12,7 +12,8 @@
         </div>
         <div class="row">
           <div class="col-6"><a href="<?= base_url('app_control/cart')?>">
-            <i class="lni lni-cart-full"><span class="cart-count">1</span></i>
+            <i class="lni lni-cart-full"><span class="cart-count"><?php if(!empty($count_cart)){
+              echo $count_cart;  } else{ echo '0';} ?></span></i>
           </a></div>
           <div class="col-6"><a href="<?= base_url('app_control/profile')?>"><i class="lni lni-user"></i></a></div>
         </div>

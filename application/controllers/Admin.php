@@ -425,6 +425,23 @@ class Admin extends CI_Controller {
 			}
 		}
 
+
+	public function order_list(){
+		$data['title']="Order List";
+		$data['datatable']=true;
+		$data['orderlist']=$this->Account_model->get_orderlist();
+		$this->template->load('pages','order_list',$data);
+	}
+
+	public function order_product(){
+		$order_no = $this->uri->segment(3);
+		$data['title']="Order List";
+		$data['datatable']=true;
+		$data['orderproduct']=$this->Account_model->order_listing($order_no);
+		$this->template->load('pages','order_product_list',$data);
+
+	}	
+
 		
 		
 	}?>
