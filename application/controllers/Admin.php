@@ -440,7 +440,19 @@ class Admin extends CI_Controller {
 		$data['orderproduct']=$this->Account_model->order_listing($order_no);
 		$this->template->load('pages','order_product_list',$data);
 
-	}	
+	}
+
+	public function update_delivery_status(){
+		$data = $this->input->post();
+		$result=$this->Account_model->update_deliverystatus($data);
+		if(!empty($result)){
+	 		$this->session->set_flashdata("msg","Delivery Status Successfully !!");
+	 		redirect('admin/order_list/');
+	 	}else{
+	 		$this->session->set_flashdata("err_msg","Try Again !!");
+	 		redirect('admin/order_list/');
+	 	} 
+	}
 
 		
 		

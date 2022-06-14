@@ -641,6 +641,30 @@ class Account_model extends CI_Model{
 		return $qry->result_array();
 	}
 
+
+	public function update_deliverystatus($data){
+		$query = $this->db->get_where('order_status', array('order_id'=>$data['order_id'],'order_status'=>$data['order_status']));
+		$count=$query->num_rows();
+		$final = $query->result_array();
+		if($count<1){
+			$data['added_on']=date('Y-m-d H:i:s');
+			$result['verify'] = $this->db->insert('order_status',$data);
+			if($result['verify']){
+			   $records = $this->get_all_status_list($data);
+			   return $records;
+			}
+		}
+		else{
+			$records = $this->get_all_status_list($data);
+			return $records;
+		}	
+	}
+
+	public function get_all_status_list($data) {
+		$query = $this->db->get_where('order_status', array('order_id'=>$data['order_id']));
+		return $query->result_array();
+	}
+
 	
 
 

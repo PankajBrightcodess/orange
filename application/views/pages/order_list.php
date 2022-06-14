@@ -51,6 +51,7 @@
                                                 <td><span class="float-right">
                                                 <a href='<?php echo base_url("admin/delete_productid/?id=$row[id]");?>'><button class="btn btn-danger btn-xs"><i class="fa fa-trash" title="Delete"></i></button></a>
                                                 <a href="<?php echo base_url("admin/order_product/".$row['order_no']);?>" class="btn btn-info btn-xs" title="Product List"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+                                                <button type="button" title="Status Update" class="btn btn-success btn-xs updt" data-order_no="<?php echo $row['order_no'];?>"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
                                                 </span></td>
                                             </tr>
                                          <?php
@@ -73,34 +74,25 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger">
-        <h5 class="modal-title" id="exampleModalLabel">User List</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update Delivery Status</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="POST" action="<?= base_url('admin/update_user');?>">
+      <form method="POST" action="<?= base_url('admin/update_delivery_status');?>">
       <div class="modal-body">
        <div class="row">
            <div class="col-md-12 col-lg-12 col-12 mb-2">
-               <label>Name</label>
-               <input type="text" name="name" id="name" class="form-control" placeholder="Name :">
-               <input type="hidden" name="id" id="id" class="form-control" placeholder="Name :">
+               <input type="hidden" name="order_id" id="order_no" class="form-control" placeholder="Name :">
            </div>
            <div class="col-md-12 col-lg-12 col-12 mb-2">
-                <label>User Name</label>
-               <input type="text" name="username" id="username" class="form-control" placeholder="User Name :">
-           </div>
-           <div class="col-md-12 col-lg-12 col-12 mb-2">
-               <label>Email</label>
-               <input type="email" name="email" id="email" class="form-control" placeholder="Email :">
-           </div>
-           <div class="col-md-12 col-lg-12 col-12 mb-2">
-                <label>Mobile No.</label>
-               <input type="text" name="contact" id="contact" class="form-control" placeholder="Mobile No. :">
-           </div>
-           <div class="col-md-12 col-lg-12 col-12 mb-2">
-                 <label>Password</label>
-               <input type="text" name="password" id="password" class="form-control" placeholder="Password :">
+                <label>Delivery Status</label>
+                <select class="form-control" name="order_status">
+                    <option value="1">Ordered</option>
+                    <option value="2">Shipped</option>
+                    <option value="3">Out For Delivery</option>
+                    <option value="4">Delivered</option>
+                </select>
            </div>
        </div>
       </div>
@@ -108,8 +100,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-info">Update</button>
       </div>
-      </form>
-    </div>
+    </form>
   </div>
 </div>
 <!-- Model Close -->
@@ -126,19 +117,8 @@
         });
 
         $('body').on('click','.updt',function(e){
-            var id = $(this).data('id');
-            var name = $(this).data('name');
-            var username = $(this).data('username');
-            var email = $(this).data('email');
-            var contact = $(this).data('contact');
-            var password = $(this).data('password');
-          
-            $('#id').val(id);
-            $('#name').val(name);
-            $('#username').val(username);
-            $('#email').val(email);
-            $('#contact').val(contact);
-            $('#password').val(password);
+            var order_no = $(this).data('order_no');
+            $('#order_no').val(order_no);
        });
 
         $('.duplicate').click(function(){
