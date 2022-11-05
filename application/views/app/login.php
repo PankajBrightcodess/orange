@@ -27,7 +27,7 @@
               <p class="mb-0">Didn't have an account?<a class="ms-1" href="<?= base_url('app_control/register')?>">Register Now</a></p>
             </div>
             <!-- View As Guest-->
-            <div class="view-as-guest mt-3"><a class="btn" href="home.html">View as Guest</a></div>
+            <div class="view-as-guest mt-3"><a class="btn" href="#">View as Guest</a></div>
           </div>
         </div>
       </div>
